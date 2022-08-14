@@ -1,3 +1,5 @@
 body{
-  margin: auto;
+  background-image: url('sunny.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
