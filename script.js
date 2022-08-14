@@ -1,20 +1,24 @@
 let apiEndpoint = 'https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m&current_weather=true&timezone=auto&daily=weathercode';
+let weatherType;
 async function weather(){
     try{
     let responseObject = await fetch(apiEndpoint);
     let data = await responseObject.json();
+    weatherCodeConverter(data.current_weather.weathercode);
     document.querySelector(".main").innerHTML += `
     <div class="card" style="width: 18rem;">
-        <img src="sunny.jpg" class="card-img-top" alt="...">
+        <img src="${weatherType}" class="card-img-top" alt="...">
     <div class="card-body">
     <h5 class="card-title">TODAY</h5>
     <p class="card-text">weather ${weatherCodeConverter(data.current_weather.weathercode)}</p>
     <p class="card-text">Temprature ${data.current_weather.temperature} </p>
     <p class="card-text">Wind Direction ${data.current_weather.winddirection} </p>
-    <p class="card-text">Wind Speed ${data.current_weather.windspeed} </p>
+    <p class="card-text">Wind Speed ${data.current_weather.windspeed} </p>  
     </div>
     </div>
+
     `;
+    document.querySelector("body").setAttribute("style", "background-image: url('cloudy.jpg')")
     weatherCodeConverter(data.current_weather.weathercode);
     
     console.log(data);
@@ -27,9 +31,11 @@ async function weather(){
 weather();
 function weatherCodeConverter(code){   
     if(code==0){
-       return "Clear sky" ;
+        weatherType = 'sunny.jpg' 
+        return "Clear sky" ;
     }
     else if(code==1||code==2||code==3){
+        weatherType = 'cloudy.jpg' 
         return "Mainly clear, partly cloudy, and overcast" ;
     }
     else if(code==45||code==48){
@@ -39,7 +45,7 @@ function weatherCodeConverter(code){
         return "Drizzle: Light, moderate, and dense intensity" ;
     }
     else if(code==56||code==57){
-        return "	Freezing Drizzle: Light and dense intensity" ;
+        return "Freezing Drizzle: Light and dense intensity" ;
     }
     else if(code==61||code==63||code==65){
         return "Rain: Slight, moderate and heavy intensity" ;
