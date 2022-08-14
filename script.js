@@ -5,8 +5,18 @@ async function weather(){
     let responseObject = await fetch(apiEndpoint);
     let data = await responseObject.json();
     weatherCodeConverter(data.current_weather.weathercode);
-    document.querySelector(".main").innerHTML += `
-    <div class="card" style="width: 18rem;">
+    document.querySelector(".row").innerHTML += `
+    <div class="card col-2 day" style="width: 18rem;">
+        <img src="${weatherType}" class="card-img-top" alt="...">
+    <div class="card-body">
+    <h5 class="card-title">TODAY</h5>
+    <p class="card-text">weather ${weatherCodeConverter(data.current_weather.weathercode)}</p>
+    <p class="card-text">Temprature ${data.current_weather.temperature} </p>
+    <p class="card-text">Wind Direction ${data.current_weather.winddirection} </p>
+    <p class="card-text">Wind Speed ${data.current_weather.windspeed} </p>  
+    </div>
+    </div>
+     <div class="card col-2 day" style="width: 18rem;">
         <img src="${weatherType}" class="card-img-top" alt="...">
     <div class="card-body">
     <h5 class="card-title">TODAY</h5>
