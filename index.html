@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer ></script>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
@@ -29,9 +29,9 @@
             </div>
         </div>
         <div class="row" style="border: 2px solid red; text-align: center;">
-            <div class="col-6>
+            <div class="col-6">
                 <h1 id="temprature">20 C</h1>
-                <h3>Addis Ababa, Ethiopia</h3>
+                <h3 id="city">Addis Ababa, Ethiopia</h3>
             </div>
             <div class="col-6">
                 <div class="row">
@@ -50,7 +50,7 @@
                         <h3>humidity</h3>
                     </div>
                     <div class="col-6">
-                        <p>9.5</p>
+                        <p id="humidity">9.5</p>
                         <h3>windspeed</h3>
                     </div>
                 </div>
@@ -58,24 +58,42 @@
             
         </div>
         <div class="row" style="border: 2px solid blue; text-align: center;">
-            <div class="row">
-                <div class="col-2">
+            <div class="row" >
+                <div class="col-2"  id="0" style="border: 2px solid blue; text-align: center;">
                     <h5>tomorrow</h5>
+                    <p>weather</p>
+                    <p>min</p>
+                    <p>max</p>
                 </div>
-                <div class="col-2">
+                <div class="col-2" id="1" style="border: 2px solid blue; text-align: center;">
                     <h5>wednesday</h5>
+                    <p>weather</p>
+                    <p>min</p>
+                    <p>max</p>
                 </div>
-                <div class="col-2">
+                <div class="col-2" id="2" style="border: 2px solid blue; text-align: center;">
                     <h5>thursday</h5>
+                    <p>weather</p>
+                    <p>min</p>
+                    <p>max</p>
                 </div>
-                <div class="col-2">
+                <div class="col-2" id="3" style="border: 2px solid blue; text-align: center;">
                     <h5>friday</h5>
+                    <p>weather</p>
+                    <p>min</p>
+                    <p>max</p>
                 </div>
-                <div class="col-2">
+                <div class="col-2" id="4" style="border: 2px solid blue; text-align: center;">
                     <h5>saturday</h5>
+                    <p>weather</p>
+                    <p>min</p>
+                    <p>max</p>
                 </div>
-                <div class="col-2">
+                <div class="col-2" id="5" style="border: 2px solid blue; text-align: center;">
                     <h5>sunday</h5>
+                    <p>weather</p>
+                    <p>min</p>
+                    <p>max</p>
                 </div>
             </div>
         </div>

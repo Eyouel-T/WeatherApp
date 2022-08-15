@@ -1,7 +1,8 @@
 var latitude = 51.5002;
 var longitude = -0.1262;
 var x = "untouched";
-var apiEndpoint = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m&current_weather=true&timezone=auto&daily=weathercode`;
+var apiEndpoint = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,relativehumidity_2m&current_weather=true&timezone=auto&daily=weathercode,temperature_2m_max,
+temperature_2m_min`;
 weather();
 // function to update the url to the correct city selected in the html
 function citySelector(){
@@ -9,21 +10,29 @@ function citySelector(){
     latitude = resolveCity(city)[0];
     console.log(resolveCity(city)[0]);
     longitude = resolveCity(city)[1];
-    apiEndpoint = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m&current_weather=true&timezone=auto&daily=weathercode`;
+    apiEndpoint = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m&current_weather=true&timezone=auto&daily=weathercode&daily=temperature_2m_max&daily=temperature_2m_min`
     x = "touched";
     weather();
 }
 function test(){
     console.log(x);
-    console.log(latitude);
+    
 }
-
-//the bottom function edits the todays date section in the html
+//the bottom function edits the weather of each day in the week
+function weekWeatherModifier(date, dayIndex, minimun, maximum){
+    document.getElementById(`${dayIndex}`).innerHTML = `
+    <p>${date}</p>
+    <p>min ${minimun}</p>
+    <p>min ${maximum}</p>`
+}
+//the bottom function edits the current day's weather information
 function todayWeatherModifier(temprature, weather , wind , humidity){
     document.querySelector("#temprature").innerHTML = temprature;
+    document.querySelector("#city").innerHTML = (document.querySelector("select").value);
     document.querySelector("#weather").innerHTML = weather;
+    document.querySelector("#windspeed").innerHTML = wind;
     document.querySelector("#humidity").innerHTML = humidity;
-    document.querySelector("#temprature").innerHTML = temprature;
+    
 }
 
 let weatherType;
@@ -40,9 +49,17 @@ async function weather(){
     var temprature = data.current_weather.temperature;
     var weather = weatherCodeConverter(data.current_weather.weathercode);
     var wind = data.current_weather.windspeed;
-    var humidity = data.current_weather.winddirection;
+    var humidity = data.current_weather.windspeed;
     todayWeatherModifier(temprature, weather, wind, humidity);
+    for(i=0; i<6; i++){
+        var dayIndex = i;
+        var date =  data.daily.time[i];
+        var maximum = data.daily.temperature_2m_max[i];
+        var minimum = data.daily.temperature_2m_min[i];
+        weekWeatherModifier(date , dayIndex, minimum, maximum);
     }
+    }
+    
     catch(err){
         console.log(err);
     }
