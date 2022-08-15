@@ -7,12 +7,13 @@
     <title>Weather App</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
 
     <div class="container">
-        <div class="row searchBar" style="border: 2px solid black; text-align: center;">
+        <div class="row" style="border: 2px solid black; text-align: center;">
             <div class="col-12">
                 <label for="cars">Choose a city</label>
                 <select name="cars" id="cars">
@@ -27,26 +28,26 @@
                 
             </div>
         </div>
-        <div class="row weatherToday" style="border: 2px solid red; text-align: center;">
-            <div class="col-6">
+        <div class="row" style="border: 2px solid red; text-align: center;">
+            <div class="col-6>
                 <h1 id="temprature">20 C</h1>
                 <h3>Addis Ababa, Ethiopia</h3>
             </div>
             <div class="col-6">
                 <div class="row">
                     <div class="col-6">
-                        <p>9.5</p>
-                        <h3>windspeed</h3>
+                        <p id="weather">9.5</p>
+                        <h3>weather</h3>
                     </div>
                     <div class="col-6">
-                        <p>9.5</p>
+                        <p id="windspeed">9.5</p>
                         <h3>windspeed</h3>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-6">
-                        <p>9.5</p>
-                        <h3>windspeed</h3>
+                        <p id="humidity">9.5</p>
+                        <h3>humidity</h3>
                     </div>
                     <div class="col-6">
                         <p>9.5</p>
@@ -56,14 +57,26 @@
             </div>
             
         </div>
-        <div class="row weatherOfTheWeek" style="border: 2px solid blue; text-align: center;">
+        <div class="row" style="border: 2px solid blue; text-align: center;">
             <div class="row">
-                <div class="col-2">tomorrow</div>
-                <div class="col-2">wednesday</div>
-                <div class="col-2">thursday</div>
-                <div class="col-2">friday</div>
-                <div class="col-2">saturday</div>
-                <div class="col-2">sunday</div>
+                <div class="col-2">
+                    <h5>tomorrow</h5>
+                </div>
+                <div class="col-2">
+                    <h5>wednesday</h5>
+                </div>
+                <div class="col-2">
+                    <h5>thursday</h5>
+                </div>
+                <div class="col-2">
+                    <h5>friday</h5>
+                </div>
+                <div class="col-2">
+                    <h5>saturday</h5>
+                </div>
+                <div class="col-2">
+                    <h5>sunday</h5>
+                </div>
             </div>
         </div>
     </div>

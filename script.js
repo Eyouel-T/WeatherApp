@@ -1,38 +1,53 @@
 var latitude = 51.5002;
 var longitude = -0.1262;
+var x = "untouched";
+var apiEndpoint = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m&current_weather=true&timezone=auto&daily=weathercode`;
+weather();
+// function to update the url to the correct city selected in the html
 function citySelector(){
     var city = document.querySelector("select").value;
     latitude = resolveCity(city)[0];
+    console.log(resolveCity(city)[0]);
     longitude = resolveCity(city)[1];
+    apiEndpoint = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m&current_weather=true&timezone=auto&daily=weathercode`;
     x = "touched";
     weather();
 }
 function test(){
+    console.log(x);
     console.log(latitude);
 }
 
-var apiEndpoint = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m&current_weather=true&timezone=auto&daily=weathercode`;
+//the bottom function edits the todays date section in the html
+function todayWeatherModifier(temprature, weather , wind , humidity){
+    document.querySelector("#temprature").innerHTML = temprature;
+    document.querySelector("#weather").innerHTML = weather;
+    document.querySelector("#humidity").innerHTML = humidity;
+    document.querySelector("#temprature").innerHTML = temprature;
+}
+
 let weatherType;
 async function weather(){
     try{
-    let responseObject = await fetch(apiEndpoint);
+    let responseObject = await fetch(apiEndpoint);  
     let data = await responseObject.json();
     weatherCodeConverter(data.current_weather.weathercode);
-    document.querySelector(".row").innerHTML += `
-    
-
-    `;
-    document.querySelector("body").setAttribute("style", "background-image: url('cloudy.jpg')")
+    document.querySelector("body").setAttribute("style", "background-image: url('background.webp')")
     weatherCodeConverter(data.current_weather.weathercode);
     
     console.log(data);
     console.log(data.current_weather.temperature);
+    var temprature = data.current_weather.temperature;
+    var weather = weatherCodeConverter(data.current_weather.weathercode);
+    var wind = data.current_weather.windspeed;
+    var humidity = data.current_weather.winddirection;
+    todayWeatherModifier(temprature, weather, wind, humidity);
     }
     catch(err){
         console.log(err);
     }
 }
-
+// function to convert the weather code into a sensible description
 function weatherCodeConverter(code){   
     if(code==0){
         weatherType = 'sunny.jpg' 
