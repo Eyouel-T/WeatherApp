@@ -1,7 +1,17 @@
+var latitude = 51.5002;
+var longitude = -0.1262;
 function citySelector(){
-    console.log(document.querySelector("select").value);
+    var city = document.querySelector("select").value;
+    latitude = resolveCity(city)[0];
+    longitude = resolveCity(city)[1];
+    x = "touched";
+    weather();
 }
-let apiEndpoint = `https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m&current_weather=true&timezone=auto&daily=weathercode`;
+function test(){
+    console.log(latitude);
+}
+
+var apiEndpoint = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m&current_weather=true&timezone=auto&daily=weathercode`;
 let weatherType;
 async function weather(){
     try{
@@ -22,7 +32,7 @@ async function weather(){
         console.log(err);
     }
 }
-weather();
+
 function weatherCodeConverter(code){   
     if(code==0){
         weatherType = 'sunny.jpg' 
@@ -87,7 +97,7 @@ function resolveCity(city){
 
     }
 }
-console.log(`the lattitude is ${resolveCity("Berlin")[0]} and the longtude is ${resolveCity("Berlin")[1]}`);
+//console.log(`the lattitude is ${resolveCity("Berlin")[0]} and the longtude is ${resolveCity("Berlin")[1]}`);
 /*
 <div class="card col-2 day" style="width: 18rem;">
         <img src="${weatherType}" class="card-img-top" alt="...">
