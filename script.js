@@ -1,4 +1,7 @@
-let apiEndpoint = 'https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m&current_weather=true&timezone=auto&daily=weathercode';
+function citySelector(){
+    console.log(document.querySelector("select").value);
+}
+let apiEndpoint = `https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m&current_weather=true&timezone=auto&daily=weathercode`;
 let weatherType;
 async function weather(){
     try{
@@ -6,26 +9,7 @@ async function weather(){
     let data = await responseObject.json();
     weatherCodeConverter(data.current_weather.weathercode);
     document.querySelector(".row").innerHTML += `
-    <div class="card col-2 day" style="width: 18rem;">
-        <img src="${weatherType}" class="card-img-top" alt="...">
-    <div class="card-body">
-    <h5 class="card-title">TODAY</h5>
-    <p class="card-text">weather ${weatherCodeConverter(data.current_weather.weathercode)}</p>
-    <p class="card-text">Temprature ${data.current_weather.temperature} </p>
-    <p class="card-text">Wind Direction ${data.current_weather.winddirection} </p>
-    <p class="card-text">Wind Speed ${data.current_weather.windspeed} </p>  
-    </div>
-    </div>
-     <div class="card col-2 day" style="width: 18rem;">
-        <img src="${weatherType}" class="card-img-top" alt="...">
-    <div class="card-body">
-    <h5 class="card-title">TODAY</h5>
-    <p class="card-text">weather ${weatherCodeConverter(data.current_weather.weathercode)}</p>
-    <p class="card-text">Temprature ${data.current_weather.temperature} </p>
-    <p class="card-text">Wind Direction ${data.current_weather.winddirection} </p>
-    <p class="card-text">Wind Speed ${data.current_weather.windspeed} </p>  
-    </div>
-    </div>
+    
 
     `;
     document.querySelector("body").setAttribute("style", "background-image: url('cloudy.jpg')")
@@ -85,4 +69,44 @@ function weatherCodeConverter(code){
         return '';
     }
 }
+function resolveCity(city){
+    // check which city is selected and return the corresponding location in lattitude and longtude
+    switch(city){
 
+        case "Berlin":
+            return [52.5235, 13.4115];
+
+        case "London":
+            return [51.5002, -0.1262];
+            
+        case "AddisAbaba":
+            return [9.0054, 38.7636];
+
+        case "Paris":
+            return [48.8567, 2.3510];
+
+    }
+}
+console.log(`the lattitude is ${resolveCity("Berlin")[0]} and the longtude is ${resolveCity("Berlin")[1]}`);
+/*
+<div class="card col-2 day" style="width: 18rem;">
+        <img src="${weatherType}" class="card-img-top" alt="...">
+    <div class="card-body">
+    <h5 class="card-title">TODAY</h5>
+    <p class="card-text">weather ${weatherCodeConverter(data.current_weather.weathercode)}</p>
+    <p class="card-text">Temprature ${data.current_weather.temperature} </p>
+    <p class="card-text">Wind Direction ${data.current_weather.winddirection} </p>
+    <p class="card-text">Wind Speed ${data.current_weather.windspeed} </p>  
+    </div>
+    </div>
+     <div class="card col-2 day" style="width: 18rem;">
+        <img src="${weatherType}" class="card-img-top" alt="...">
+    <div class="card-body">
+    <h5 class="card-title">TODAY</h5>
+    <p class="card-text">weather ${weatherCodeConverter(data.current_weather.weathercode)}</p>
+    <p class="card-text">Temprature ${data.current_weather.temperature} </p>
+    <p class="card-text">Wind Direction ${data.current_weather.winddirection} </p>
+    <p class="card-text">Wind Speed ${data.current_weather.windspeed} </p>  
+    </div>
+    </div>
+*/
