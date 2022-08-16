@@ -10,9 +10,10 @@ function citySelector(){
     latitude = resolveCity(city)[0];
     console.log(resolveCity(city)[0]);
     longitude = resolveCity(city)[1];
-    apiEndpoint = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m&current_weather=true&timezone=auto&daily=weathercode&daily=temperature_2m_max&daily=temperature_2m_min&daily=precipitation_sum`
-    x = "touched";
+    apiEndpoint = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,relativehumidity_2m&current_weather=true&timezone=auto&daily=weathercode&daily=temperature_2m_max&daily=temperature_2m_min&daily=precipitation_sum`
+   
     weather();
+    console.log("in the city selector function");
 }
 
 //the bottom function edits the weather of each day in the week
@@ -59,6 +60,7 @@ async function weather(){
     var time =  data.current_weather.time;
     // check the current time : console.log("time is "+ time);
     var indexOfTimeHourly = data.hourly.time.indexOf(time);
+
     // check the index of that time from the weeks hourly time array: console.log("the time is in index "+ indexOfTimeHourly);
     var humidity = data.hourly.relativehumidity_2m[indexOfTimeHourly];
     // use the index to get the current humidity from the weekly relative humidity array: console.log("the element with that index in humidity is "+ humidity);
@@ -83,21 +85,47 @@ function weatherCodeConverter(code){
         weatherType = 'sunny.jpg' 
         return "Clear sky" ;
     }
-    else if(code==1||code==2||code==3){
+    else if(code==1){
         weatherType = 'cloudy.jpg' 
-        return "Mainly clear, partly cloudy, and overcast" ;
+        return "Mainly clear" ;
     }
-    else if(code==45||code==48){
-        return "Fog and depositing rime fog" ;
+    else if(code==2){
+        weatherType = 'cloudy.jpg' 
+        return "Partly cloudy" ;
     }
-    else if(code==51||code==53||code==55){
-        return "Drizzle: Light, moderate, and dense intensity" ;
+    else if(code==3){
+        weatherType = 'cloudy.jpg' 
+        return "Overcast" ;
     }
-    else if(code==56||code==57){
-        return "Freezing Drizzle: Light and dense intensity" ;
+    else if(code==45){
+        return "Fog" ;
     }
-    else if(code==61||code==63||code==65){
-        return "Rain: Slight, moderate and heavy intensity" ;
+    else if(code==48){
+        return "depositing rime fog" ;
+    }
+    else if(code==51){
+        return "Drizzle: Light intensity" ;
+    }
+    else if(code==53){
+        return "Drizzle: moderate intensity" ;
+    }
+    else if(code==55){
+        return "Drizzle: dense intensity" ;
+    }
+    else if(code==56){
+        return "Freezing Drizzle: Light intensity" ;
+    }
+    else if(code==57){
+        return "Freezing Drizzle: dense intensity" ;
+    }
+    else if(code==61){
+        return "Rain: Slight intensity" ;
+    }
+    else if(code==63){
+        return "Rain: moderate intensity" ;
+    }
+    else if(code==65){
+        return "Rain: heavy intensity" ;
     }
     else if(code==66||code==67){
         return "Freezing Rain: Light and heavy intensity" ;
@@ -108,8 +136,14 @@ function weatherCodeConverter(code){
     else if(code==77){
         return "Snow grains" ;
     }
-    else if(code==80||code==81||code==82){
-        return "Rain showers: Slight, moderate, and violent" ;
+    else if(code==80){
+        return "Rain showers: Slight" ;
+    }
+    else if(code==81){
+        return "Rain showers: moderate" ;
+    }
+    else if(code==82){
+        return "Rain showers: violent" ;
     }
     else if(code==85||code==86){
         return "Snow showers slight and heavy" ;
