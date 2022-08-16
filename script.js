@@ -2,7 +2,7 @@ var latitude = 51.5002;
 var longitude = -0.1262;
 var x = "untouched";
 var apiEndpoint = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,relativehumidity_2m&current_weather=true&timezone=auto&daily=weathercode,temperature_2m_max,
-temperature_2m_min`;
+temperature_2m_min&daily=precipitation_sum`;
 weather();
 // function to update the url to the correct city selected in the html
 function citySelector(){
@@ -10,14 +10,11 @@ function citySelector(){
     latitude = resolveCity(city)[0];
     console.log(resolveCity(city)[0]);
     longitude = resolveCity(city)[1];
-    apiEndpoint = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m&current_weather=true&timezone=auto&daily=weathercode&daily=temperature_2m_max&daily=temperature_2m_min`
+    apiEndpoint = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m&current_weather=true&timezone=auto&daily=weathercode&daily=temperature_2m_max&daily=temperature_2m_min&daily=precipitation_sum`
     x = "touched";
     weather();
 }
-function test(){
-    console.log(x);
-    
-}
+
 //the bottom function edits the weather of each day in the week
 function weekWeatherModifier(date, dayIndex, minimun, maximum){
     document.getElementById(`${dayIndex}`).innerHTML = `
@@ -26,12 +23,13 @@ function weekWeatherModifier(date, dayIndex, minimun, maximum){
     <p>min ${maximum}</p>`
 }
 //the bottom function edits the current day's weather information
-function todayWeatherModifier(temprature, weather , wind , humidity){
+function todayWeatherModifier(temprature, weather , wind , humidity, precipitation){
     document.querySelector("#temprature").innerHTML = temprature;
     document.querySelector("#city").innerHTML = (document.querySelector("select").value);
     document.querySelector("#weather").innerHTML = weather;
     document.querySelector("#windspeed").innerHTML = wind;
     document.querySelector("#humidity").innerHTML = humidity;
+    document.querySelector("#precipitation").innerHTML = precipitation;
     
 }
 
@@ -49,8 +47,14 @@ async function weather(){
     var temprature = data.current_weather.temperature;
     var weather = weatherCodeConverter(data.current_weather.weathercode);
     var wind = data.current_weather.windspeed;
-    var humidity = data.current_weather.windspeed;
-    todayWeatherModifier(temprature, weather, wind, humidity);
+    var time =  data.current_weather.time;
+    // check the current time : console.log("time is "+ time);
+    var indexOfTimeHourly = data.hourly.time.indexOf(time);
+    // check the index of that time from the weeks hourly time array: console.log("the time is in index "+ indexOfTimeHourly);
+    var humidity = data.hourly.relativehumidity_2m[indexOfTimeHourly];
+    // use the index to get the current humidity from the weekly relative humidity array: console.log("the element with that index in humidity is "+ humidity);
+    var precipitation  = data.daily.precipitation_sum[0];
+    todayWeatherModifier(temprature, weather, wind, humidity, precipitation);
     for(i=0; i<6; i++){
         var dayIndex = i;
         var date =  data.daily.time[i];
@@ -129,6 +133,7 @@ function resolveCity(city){
 
     }
 }
+
 //console.log(`the lattitude is ${resolveCity("Berlin")[0]} and the longtude is ${resolveCity("Berlin")[1]}`);
 /*
 <div class="card col-2 day" style="width: 18rem;">

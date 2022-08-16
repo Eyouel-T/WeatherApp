@@ -1,5 +1,38 @@
 body{
   background-repeat: no-repeat;
   background-size: cover;
-   }
+  font-family: Arial, Helvetica, sans-serif;
 
+}
+.day{
+    background-color: rgba(0, 13, 128, 0.212);
+}
+.searchBar{
+  margin-top: 20px;
+}
+select{
+  margin-top: 5px;
+  background-color: rgba(0, 13, 128, 0.041);
+  border: 1px solid rgba(255, 255, 255, 0.247);
+  border-radius: 5px;
+  color: rgba(255, 255, 255, 0.774);
+}
+#cars *{
+  background-color: rgba(0, 13, 128, 0.486);
+  border-radius: 5px;
+  
+}
+#citySubmit{
+  font-size: small;
+  margin-top: 15px;
+  background-color: rgba(0, 13, 128, 0.041);
+  color: rgba(255, 255, 255, 0.774);
+  border: 1px solid rgba(255, 255, 255, 0.247);
+  border-radius: 5px;
+}
+#temprature{
+  font-size: 60px;
+}
+#city{
+  font-size: 30px;
+}
