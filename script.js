@@ -17,14 +17,23 @@ function citySelector(){
 
 //the bottom function edits the weather of each day in the week
 function weekWeatherModifier(date, dayIndex, minimun, maximum){
-    document.getElementById(`${dayIndex}`).innerHTML = `
+    let dayId;
+    if(dayIndex==0)dayId='day1';
+    else if(dayIndex==1)dayId='day2';
+    else if(dayIndex==2)dayId='day3';
+    else if(dayIndex==3)dayId='day4';
+    else if(dayIndex==4)dayId='day5';
+    else if(dayIndex==5)dayId='day6';
+    else if(dayIndex==6)dayId='day7';
+    document.getElementById(`${dayId}`).innerHTML = `
     <p>${date}</p>
-    <p>min ${minimun}</p>
-    <p>min ${maximum}</p>`
+    <p>max ${maximum}&#176c</p>
+    <p>min ${minimun}&#176c</p>
+    `
 }
 //the bottom function edits the current day's weather information
 function todayWeatherModifier(temprature, weather , wind , humidity, precipitation){
-    document.querySelector("#temprature").innerHTML = temprature;
+    document.querySelector("#temprature").innerHTML = `${temprature}&#176c`;
     document.querySelector("#city").innerHTML = (document.querySelector("select").value);
     document.querySelector("#weather").innerHTML = weather;
     document.querySelector("#windspeed").innerHTML = wind;

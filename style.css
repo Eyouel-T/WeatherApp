@@ -4,6 +4,14 @@ body{
   font-family: Arial, Helvetica, sans-serif;
 
 }
+.container{
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.103);
+}
+.container p, h1,h2,h3,h4,h5,h6{
+  color: rgb(6, 61, 124);
+}
+
 .day{
     background-color: rgba(0, 13, 128, 0.212);
 }
@@ -31,8 +39,40 @@ select{
   border-radius: 5px;
 }
 #temprature{
+  color: rgb(6, 141, 112);
   font-size: 60px;
 }
 #city{
+  color: rgb(6, 141, 112);
   font-size: 30px;
+}
+#day1{
+  border-radius: 5%;
+  width: 15.5%;
+  margin-left: 2%;
+}
+#day2{
+  border-radius: 5%;
+  width: 15.5%;
+  margin-left: 1%;
+}
+#day3{
+  border-radius: 5%;
+  width: 15.5%;
+  margin-left: 1%;
+}
+#day4{
+  border-radius: 5%;
+  width: 15.5%;
+  margin-left: 1%;
+}
+#day5{
+  border-radius: 5%;
+  width: 15.5%;
+  margin-left: 1%;
+}
+#day6{
+  border-radius: 5%;
+  width: 15.5%;
+  margin-left: 1%;
 }
