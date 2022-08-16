@@ -15,6 +15,17 @@ function citySelector(){
     weather();
     console.log("in the city selector function");
 }
+function darkLight(){
+    
+    if(document.querySelector("#darkLight").innerHTML=="dark"){
+        document.querySelector("#style").setAttribute("href", "dark.css");
+        document.querySelector("#darkLight").innerHTML = "light"
+    }
+    else{
+    document.querySelector("#style").setAttribute("href", "style.css");
+    document.querySelector("#darkLight").innerHTML = "dark"
+    }
+}
 
 //the bottom function edits the weather of each day in the week
 function weekWeatherModifier(date, dayIndex, minimun, maximum){

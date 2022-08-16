@@ -14,6 +14,7 @@ body{
 
 .day{
     background-color: rgba(0, 13, 128, 0.212);
+    padding-top: 2%;
 }
 .searchBar{
   margin-top: 20px;
@@ -30,7 +31,7 @@ select{
   border-radius: 5px;
   
 }
-#citySubmit{
+#citySubmit , #darkLight{
   font-size: small;
   margin-top: 15px;
   background-color: rgba(0, 13, 128, 0.041);
@@ -76,3 +77,4 @@ select{
   width: 15.5%;
   margin-left: 1%;
 }
+
