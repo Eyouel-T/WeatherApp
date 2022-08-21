@@ -10,8 +10,8 @@ body{
     background-color: rgba(0, 0, 0, 0.103);
     background-color: rgba(0, 0, 0, 0.842);
   }
-  .container p, h1,h2,h3,h4,h5,h6{
-    color: rgb(6, 61, 124);
+  .container p, h1,h2,h3,h4,h5,h6, label{
+    color: rgb(47, 111, 184);
   }
   
   .day{
