@@ -49,6 +49,9 @@ body{
     color: rgb(6, 141, 112);
     font-size: 30px;
   }
+  .data p{
+    font-size: 15px;
+  }
   #day1{
     border-radius: 5%;
     width: 15.5%;

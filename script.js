@@ -16,7 +16,6 @@ function citySelector(){
     console.log("in the city selector function");
 }
 function darkLight(){
-    
     if(document.querySelector("#darkLight").innerHTML=="dark"){
         document.querySelector("#style").setAttribute("href", "dark.css");
         document.querySelector("#darkLight").innerHTML = "light"
