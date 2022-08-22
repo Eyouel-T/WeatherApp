@@ -16,6 +16,7 @@ function citySelector(){
     console.log("in the city selector function");
 }
 function darkLight(){
+    
     if(document.querySelector("#darkLight").innerHTML=="dark"){
         document.querySelector("#style").setAttribute("href", "dark.css");
         document.querySelector("#darkLight").innerHTML = "light"
@@ -183,6 +184,22 @@ function resolveCity(city){
 
         case "Paris":
             return [48.8567, 2.3510];
+
+        case "Madrid":
+            return [40.4167, -3.7033];
+
+        case "Vienna":
+            return [48.2092, 16.3728];
+
+        case "Brussels":
+            return [50.8371, 4.3676];
+
+        case "Moscow":
+            return [55.7558, 37.6176];
+            
+        case "Tokyo":
+            return [35.6785, 139.6823];
+        
 
     }
 }
