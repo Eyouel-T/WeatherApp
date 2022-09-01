@@ -204,26 +204,3 @@ function resolveCity(city){
     }
 }
 
-//console.log(`the lattitude is ${resolveCity("Berlin")[0]} and the longtude is ${resolveCity("Berlin")[1]}`);
-/*
-<div class="card col-2 day" style="width: 18rem;">
-        <img src="${weatherType}" class="card-img-top" alt="...">
-    <div class="card-body">
-    <h5 class="card-title">TODAY</h5>
-    <p class="card-text">weather ${weatherCodeConverter(data.current_weather.weathercode)}</p>
-    <p class="card-text">Temprature ${data.current_weather.temperature} </p>
-    <p class="card-text">Wind Direction ${data.current_weather.winddirection} </p>
-    <p class="card-text">Wind Speed ${data.current_weather.windspeed} </p>  
-    </div>
-    </div>
-     <div class="card col-2 day" style="width: 18rem;">
-        <img src="${weatherType}" class="card-img-top" alt="...">
-    <div class="card-body">
-    <h5 class="card-title">TODAY</h5>
-    <p class="card-text">weather ${weatherCodeConverter(data.current_weather.weathercode)}</p>
-    <p class="card-text">Temprature ${data.current_weather.temperature} </p>
-    <p class="card-text">Wind Direction ${data.current_weather.winddirection} </p>
-    <p class="card-text">Wind Speed ${data.current_weather.windspeed} </p>  
-    </div>
-    </div>
-*/
